@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oportunidad imperdible</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101010;
+  --ink-1:#141417;
+  --ink-2:#17171b;
+  --paper:#ffffff;
+  --blue:#0B37BD;
+  --blue-hi:#1c4fe0;
+  --peri:#8AA0DD;
+  --peri-dim:rgba(138,160,221,.16);
+  --peri-line:rgba(138,160,221,.14);
+  --txt:#f4f5f8;
+  --txt-mut:#a7abb6;
+  --txt-soft:#7d818c;
+  --radius:18px;
+  --wrap:1120px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Inter Tight",system-ui,sans-serif;
+  background:var(--ink);
+  color:var(--txt);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+/* page is flat black; depth comes from the full-contrast white & blue sections and the hero */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+section{position:relative;z-index:1}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.serif{font-family:"Playfair Display",serif;font-style:italic;font-weight:500;color:var(--peri)}
+
+/* ---------- Type scale ---------- */
+h1,h2,h3{font-weight:600;line-height:1.05;letter-spacing:-.02em}
+h1{font-size:clamp(2.5rem,6vw,4.4rem)}
+h2{font-size:clamp(2rem,4.4vw,3.25rem);letter-spacing:-.025em}
+h3{font-size:clamp(1.25rem,2vw,1.6rem);letter-spacing:-.01em}
+.lead{font-size:clamp(1.05rem,1.5vw,1.28rem);color:var(--txt-mut);font-weight:400}
+p{color:var(--txt-mut)}
+
+/* ---------- Eyebrow ---------- */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--peri);
+  padding:7px 15px 7px 12px;border:1px solid var(--peri-line);border-radius:100px;
+  background:rgba(138,160,221,.05);
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--peri);box-shadow:0 0 10px var(--peri)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:inherit;font-size:1rem;font-weight:500;
+  padding:16px 30px;border-radius:100px;border:1px solid transparent;
+  background:var(--blue);color:#fff;cursor:pointer;
+  transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+  box-shadow:0 10px 30px -8px rgba(11,55,189,.6),inset 0 1px 0 rgba(255,255,255,.18);
+  text-align:center;line-height:1.25;
+}
+.btn:hover{background:var(--blue-hi);transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(11,55,189,.75),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn:focus-visible{outline:2px solid var(--peri);outline-offset:3px}
+.btn svg{width:17px;height:17px;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-lg{padding:20px 40px;font-size:1.08rem}
+.btn-ghost{background:transparent;border-color:var(--peri-line);color:var(--txt);box-shadow:none}
+.btn-ghost:hover{background:rgba(138,160,221,.08);border-color:var(--peri);transform:translateY(-2px);box-shadow:none}
+
+/* ---------- Nav ---------- */
+.nav{position:absolute;top:0;left:0;right:0;z-index:20}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:26px 24px;max-width:var(--wrap);margin:0 auto}
+.nav-logo{height:26px;width:auto;opacity:.96}
+.nav-tag{font-size:.78rem;color:var(--txt-soft);letter-spacing:.04em;display:none}
+@media(min-width:640px){.nav-tag{display:block}}
+
+/* ---------- Section rhythm ---------- */
+.sec{padding:clamp(80px,11vw,150px) 0}
+.sec-sm{padding:clamp(60px,8vw,100px) 0}
+.sec-head{max-width:760px;margin:0 auto 60px;text-align:center}
+.sec-head .eyebrow{margin-bottom:22px}
+.sec-head h2{margin-bottom:20px}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;padding:80px 0 90px;text-align:center;overflow:hidden;
+  background:radial-gradient(125% 82% at 50% -24%, rgba(28,79,224,.42), rgba(11,55,189,.10) 40%, transparent 64%), var(--ink);
+}
+/* Vertical grid lines (recreation of the Framer "VerticalGridLines" component, in our palette):
+   evenly-spaced faint vertical lines with light segments traveling down each one */
+.vgrid{position:absolute;inset:0;z-index:0;display:flex;justify-content:space-evenly;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 15%,#000 66%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 15%,#000 66%,transparent 100%)}
+.vline{position:relative;width:1px;height:100%;background:rgba(138,160,221,.09);overflow:hidden}
+.vbeam{position:absolute;left:-1px;top:-88px;width:3px;height:88px;border-radius:3px;
+  background:linear-gradient(180deg,transparent,var(--peri),transparent);
+  box-shadow:0 0 12px rgba(138,160,221,.55);
+  animation:vbeam var(--dur,6s) linear var(--delay,0s) infinite}
+@keyframes vbeam{0%{top:-88px;opacity:0}8%{opacity:1}86%{opacity:1}100%{top:100%;opacity:0}}
+/* vignette that seats the document into the black page below */
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:300px;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg, transparent, var(--ink));
+}
+.hero>.wrap{position:relative;z-index:1}
+.hero .eyebrow{margin-bottom:28px}
+.hero h1{margin:0 auto 26px;max-width:14ch}
+.hero .lead{max-width:60ch;margin:0 auto 20px}
+.hero-note{color:var(--txt-soft);font-size:.95rem;margin-bottom:40px}
+
+/* document mockup / real product shot */
+.doc-stage{margin:64px auto 0;max-width:880px;position:relative}
+.doc-glow{position:absolute;inset:-10% 10% 20%;background:radial-gradient(closest-side,rgba(11,55,189,.5),transparent 75%);filter:blur(40px);z-index:0}
+
+/* generic frame for real screen captures (screenshots / GIFs of the actual platform) */
+.shot-frame{
+  position:relative;z-index:1;border-radius:16px;overflow:hidden;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08);
+  background:#0c0c0e;line-height:0;
+}
+.shot-frame img{display:block;width:100%;height:auto}
+.shot-frame .cap{
+  position:absolute;left:14px;bottom:14px;z-index:2;
+  font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;
+  background:rgba(11,55,189,.85);backdrop-filter:blur(6px);padding:6px 11px;border-radius:100px;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.shot-frame .cap::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+
+/* Hero "smooth tabs" — segmented pill switcher w/ sliding indicator + crossfading preview */
+.htabs{display:inline-flex;gap:2px;padding:5px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--peri-line);position:relative;margin:0 auto 22px}
+.htab{position:relative;z-index:2;border:0;background:transparent;font:inherit;font-size:.86rem;font-weight:600;color:var(--txt-soft);padding:10px 22px;border-radius:100px;cursor:pointer;transition:color .3s var(--ease);white-space:nowrap}
+.htab.active{color:#fff}
+.htab:focus-visible{outline:2px solid var(--peri);outline-offset:2px}
+.htab-ind{position:absolute;top:5px;left:5px;height:calc(100% - 10px);width:0;border-radius:100px;
+  background:linear-gradient(135deg,var(--blue-hi),var(--blue));box-shadow:0 6px 20px -4px rgba(11,55,189,.75);z-index:1;
+  transition:transform .5s cubic-bezier(.65,0,.35,1),width .5s cubic-bezier(.65,0,.35,1)}
+
+.hero-stage{position:relative;aspect-ratio:16/10}
+.hstage-item{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none;background:#0c0c0e}
+.hstage-item.active{opacity:1;pointer-events:auto}
+.hstage-item img,.hstage-item video{width:100%;height:100%;object-fit:cover;display:block}
+/* cropped frame — shows only a region of a wider screenshot, positioned by pixel offset */
+.shot-crop{position:relative;border-radius:14px;overflow:hidden}
+.shot-crop img{position:absolute;max-width:none;display:block}
+
+/* ---------- Conoce block ---------- */
+.conoce{margin-top:96px;text-align:center;max-width:720px;margin-left:auto;margin-right:auto}
+.conoce .logo-mark{height:38px;margin:0 auto 26px;opacity:.95}
+.conoce h2{margin-bottom:18px}
+.conoce p{margin:0 auto 32px;max-width:56ch}
+
+/* ---------- Testimonials — full-width auto-carousel with edge falloff ---------- */
+.tst-sec{overflow:hidden}
+.tst-rail{
+  position:relative;width:100vw;left:50%;margin-left:-50vw;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 13%,#000 87%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 13%,#000 87%,transparent 100%);
+  cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none;
+}
+.tst-rail.dragging{cursor:grabbing}
+.tst-rail.dragging .tst{transition:none}
+.tst-track{display:flex;gap:22px;width:max-content;padding:6px 0;will-change:transform}
+.tst{
+  --fall:0; /* 0 at center, 1 at rail edge — set by JS */
+  flex:0 0 auto;width:min(78vw,420px);
+  background:#141416;border:1px solid rgba(138,160,221,.12);border-radius:20px;padding:30px 32px;
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.65);
+  transform:scale(calc(1 - var(--fall)*.1));
+  filter:blur(calc(var(--fall)*3px));
+  opacity:calc(1 - var(--fall)*.55);
+}
+.tst-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tst-name{font-weight:700;font-size:1.15rem;color:#fff;letter-spacing:-.01em}
+.tst-check{width:19px;height:19px;border-radius:50%;background:#22c55e;display:inline-grid;place-items:center;flex:none}
+.tst-check svg{width:11px;height:11px}
+.tst-verified{color:var(--txt-soft);font-size:.86rem}
+.tst-verified::before{content:"|";margin-right:8px;color:rgba(138,160,221,.3)}
+.tst-stars{color:var(--peri);display:flex;gap:4px;margin-bottom:20px}
+.tst-stars svg{width:19px;height:19px}
+.tst h4{font-size:1.28rem;font-weight:700;color:#fff;line-height:1.28;letter-spacing:-.015em;margin-bottom:14px}
+.tst p{color:var(--txt-mut);font-size:.98rem;line-height:1.6;margin-bottom:0}
+.tst-date{display:block;text-align:right;color:var(--txt-soft);font-size:.85rem;margin-top:18px}
+
+/* ---------- Prose / evolución ---------- */
+.prose{max-width:760px;margin:0 auto;text-align:center}
+.prose h2{margin-bottom:26px}
+.evo-h2{max-width:30ch;margin-left:auto;margin-right:auto;text-wrap:balance}
+.sec-head-wide{max-width:900px}
+.herr-h2{max-width:36ch;margin-left:auto;margin-right:auto;text-wrap:balance}
+.pers-h2{max-width:34ch;margin-left:auto;margin-right:auto;text-wrap:balance}
+.prose p{font-size:1.12rem;margin-bottom:18px}
+/* escalating thread: proceso → sesión → paciente — gets more specific and more
+   weighted at each step, visually building toward the turn ("y ahí es donde entra…") */
+.escalate{display:flex;flex-direction:column;margin:48px auto 0;max-width:600px;text-align:left}
+.escalate .e-row{display:flex;align-items:stretch;gap:22px}
+.escalate .e-rail{display:flex;flex-direction:column;align-items:center;flex:none;width:13px}
+.escalate .e-dot{width:13px;height:13px;border-radius:50%;flex:none;margin-top:13px;background:rgba(138,160,221,.28);transition:background-color .5s var(--ease),box-shadow .5s var(--ease)}
+.escalate .e-dot.lit{background:var(--peri);box-shadow:0 0 16px rgba(138,160,221,.8)}
+.escalate .e-thread{width:1px;flex:1;min-height:26px;background:linear-gradient(180deg,rgba(138,160,221,.3),rgba(138,160,221,.5))}
+.escalate .e-row:last-child .e-thread{display:none}
+.escalate .e-text{padding:0 0 28px;color:var(--txt-soft);font-size:1.2rem;line-height:1.4}
+.escalate .e-row:nth-child(2) .e-text{color:var(--txt-mut);font-size:1.4rem}
+.escalate .e-row:nth-child(3) .e-text{color:var(--txt);font-size:1.75rem;font-weight:500;letter-spacing:-.01em}
+/* per-word scroll blur-reveal — words sharpen/brighten left-to-right as the row scrolls
+   through view; gated behind .sr-ready (added by JS) so text is never hidden if JS fails */
+.sr-ready .sr-word{display:inline-block;opacity:.12;filter:blur(3px)}
+.prose .pull{font-weight:500;font-size:clamp(1.7rem,3.4vw,2.3rem);color:var(--txt);line-height:1.3;margin:20px auto 34px;max-width:48ch;white-space:nowrap;letter-spacing:-.01em}
+.prose .pull .serif{font-size:1em}
+
+/* ---------- Feature (tool) ---------- */
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.feat.rev .feat-txt{order:2}
+/* stacked layout for real product screenshots — they need real width to stay legible */
+.feat-stack{grid-template-columns:1fr!important}
+.feat-stack.rev .feat-txt{order:0}
+.feat-stack .panel{margin-top:12px;max-width:960px;margin-left:auto;margin-right:auto;width:100%}
+.feat-num{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--peri);font-weight:600;margin-bottom:16px;display:block}
+.feat-txt h3{font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:18px}
+.feat-txt p{font-size:1.05rem;margin-bottom:22px}
+.neg{list-style:none;display:flex;flex-direction:column;gap:9px;margin:22px 0 0}
+.neg li{color:var(--txt-soft);font-size:.98rem}
+.chk-list{list-style:none;display:flex;flex-direction:column;gap:13px;margin-top:8px}
+.chk-list li{display:flex;align-items:center;gap:12px;color:var(--txt);font-size:1rem}
+.chk-list i{width:22px;height:22px;border-radius:7px;background:rgba(11,55,189,.16);border:1px solid rgba(28,79,224,.4);flex:none;display:grid;place-items:center}
+.chk-list i svg{width:12px;height:12px;color:var(--peri)}
+
+.panel{
+  background:linear-gradient(180deg,rgba(138,160,221,.07),rgba(255,255,255,.02));
+  border:1px solid var(--peri-line);border-radius:22px;padding:26px;position:relative;overflow:hidden;
+}
+.panel::after{content:"";position:absolute;top:-40%;right:-20%;width:60%;height:80%;background:radial-gradient(closest-side,rgba(11,55,189,.4),transparent);filter:blur(30px)}
+
+/* mini clinical doc inside panel */
+.mini-doc{background:#fff;border-radius:14px;padding:22px;color:#15161a;box-shadow:0 20px 50px -22px rgba(0,0,0,.6);position:relative;z-index:1}
+.mini-doc .mh{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #edeff4;padding-bottom:14px;margin-bottom:16px}
+.mini-doc .mh strong{font-size:.95rem}
+.mini-doc .mh em{font-style:normal;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:4px 9px;border-radius:6px;font-weight:600}
+.mini-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.mini-row label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#a9aebb;font-weight:600}
+.mini-row .bar{height:10px;border-radius:5px;background:#eceef4}
+.mini-row .bar.w7{width:70%}.mini-row .bar.w9{width:90%}.mini-row .bar.w5{width:50%}
+
+/* ---------- Generador (wizard) ---------- */
+.wizard{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+.wcol{background:rgba(255,255,255,.02);border:1px solid var(--peri-line);border-radius:16px;padding:20px}
+.wcol h4{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--peri);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.wcol h4 span{width:20px;height:20px;border-radius:50%;background:rgba(138,160,221,.14);display:grid;place-items:center;font-size:.7rem;color:var(--peri)}
+.chip{display:block;width:100%;text-align:left;font-family:inherit;font-size:.92rem;color:var(--txt-mut);
+  padding:11px 14px;border-radius:10px;border:1px solid transparent;background:rgba(255,255,255,.02);
+  margin-bottom:8px;cursor:pointer;transition:all .25s var(--ease)}
+.chip:hover{color:var(--txt);background:rgba(138,160,221,.08)}
+.chip.on{background:rgba(11,55,189,.22);border-color:rgba(28,79,224,.55);color:#fff}
+.wizard-out{margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;
+  background:rgba(11,55,189,.1);border:1px solid rgba(28,79,224,.35);border-radius:14px;padding:18px 22px}
+.wizard-out p{color:var(--txt);margin:0;font-size:.98rem}
+.wizard-out b{color:var(--peri);font-weight:600}
+.count-line{margin-top:16px;text-align:center;color:var(--txt-soft);font-size:.95rem}
+.count-line b{color:var(--peri)}
+.wizard-punch{margin-top:22px;font-weight:500;color:var(--txt);font-size:1.15rem;line-height:1.5;letter-spacing:-.005em}
+.wizard-punch .serif{font-size:1em}
+
+/* iPhone mockup — holds the real product demo video */
+.phone-col{display:flex;justify-content:center;position:relative}
+.phone-glow{position:absolute;inset:10% 15%;background:radial-gradient(closest-side,rgba(11,55,189,.5),transparent 75%);filter:blur(50px);z-index:0}
+.phone-mock{
+  position:relative;z-index:1;width:min(280px,78vw);aspect-ratio:9/19.5;
+  background:linear-gradient(160deg,#1c1c20,#08080a);border-radius:46px;padding:12px;
+  box-shadow:0 40px 90px -28px rgba(0,0,0,.75),inset 0 0 0 1.5px rgba(255,255,255,.08),inset 0 0 0 3px #000;
+}
+.phone-notch-mask{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:48%;height:40px;background:#fff;border-radius:18px;z-index:2}
+.phone-notch{position:absolute;top:26px;left:50%;transform:translateX(-50%);width:34%;height:22px;background:#000;border-radius:14px;z-index:3}
+.phone-screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#0a0a0c}
+.phone-placeholder{position:absolute;inset:0;z-index:0;display:grid;place-items:center;background:linear-gradient(165deg,#17171b,#0a0a0c)}
+.phone-placeholder svg{width:42px;height:42px;color:rgba(138,160,221,.35)}
+.phone-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
+.phone-btn{position:absolute;background:linear-gradient(90deg,#1c1c20,#0c0c0e);z-index:0}
+.phone-btn-power{right:-3px;top:30%;width:3px;height:70px;border-radius:0 3px 3px 0}
+.phone-btn-vol1{left:-3px;top:22%;width:3px;height:36px;border-radius:3px 0 0 3px}
+.phone-btn-vol2{left:-3px;top:32%;width:3px;height:36px;border-radius:3px 0 0 3px}
+
+/* MacBook mockup — holds the desktop product demo video */
+.mac-col{position:relative;width:100%;min-width:0;margin:12px auto 0}
+.mac-glow{position:absolute;inset:10% 8%;background:radial-gradient(closest-side,rgba(11,55,189,.45),transparent 75%);filter:blur(55px);z-index:0}
+.mac-mock{position:relative;z-index:1}
+.mac-lid{
+  background:linear-gradient(160deg,#1c1c20,#08080a);border-radius:16px 16px 5px 5px;
+  padding:16px 16px 11px;box-shadow:0 45px 100px -30px rgba(0,0,0,.75),inset 0 0 0 1.5px rgba(255,255,255,.08);
+}
+.mac-cam{width:6px;height:6px;border-radius:50%;background:#000;margin:0 auto 10px;box-shadow:0 0 0 1px rgba(255,255,255,.07)}
+.mac-screen{position:relative;width:100%;aspect-ratio:16/9;border-radius:5px;overflow:hidden;background:#0a0a0c}
+.mac-placeholder{position:absolute;inset:0;z-index:0;display:grid;place-items:center;background:linear-gradient(165deg,#17171b,#0a0a0c)}
+.mac-placeholder svg{width:48px;height:48px;color:rgba(138,160,221,.35)}
+.mac-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
+.mac-base{position:relative;width:107%;left:-3.5%;height:16px;background:linear-gradient(180deg,#2a2a2f,#131315);border-radius:0 0 12px 12px;box-shadow:0 10px 22px -8px rgba(0,0,0,.6)}
+.mac-base::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:15%;height:6px;background:#0a0a0c;border-radius:0 0 8px 8px}
+.table-transition{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(120px,18vw,220px);z-index:0;pointer-events:none}
+
+/* three-step flow */
+/* Rutina: SIN / CON comparison */
+.routine-compare{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px;align-items:stretch}
+.routine-card{position:relative}
+.rc-badge{position:absolute;top:-22px;left:32px;width:53px;height:53px;border-radius:13px;overflow:hidden;box-shadow:0 18px 36px -14px rgba(0,0,0,.65);z-index:2}
+.rc-badge img{display:block;width:100%;height:100%}
+.rc-body{border-radius:20px;padding:44px 32px 32px;position:relative;height:100%}
+.rc-body .rc-label{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px}
+.routine-sin .rc-body{background:rgba(255,255,255,.02);border:1px solid var(--peri-line)}
+.routine-sin .rc-label{color:#c98a8a}
+.routine-con .rc-body{background:linear-gradient(165deg,#151519,#0a0a0c 65%);border:1px solid rgba(28,79,224,.5);box-shadow:0 40px 90px -35px rgba(11,55,189,.65),inset 0 1px 0 rgba(255,255,255,.06);overflow:hidden}
+.routine-con .rc-label{color:var(--peri)}
+.routine-con .rc-body::before{content:"";position:absolute;top:-30%;right:-20%;width:75%;height:75%;background:radial-gradient(closest-side,rgba(28,79,224,.55),transparent);filter:blur(40px);pointer-events:none}
+.routine-con .rc-body::after{content:"";position:absolute;bottom:-28%;left:-18%;width:65%;height:65%;background:radial-gradient(closest-side,rgba(138,160,221,.4),transparent);filter:blur(45px);pointer-events:none}
+.routine-close{text-align:center;margin-top:34px;color:var(--txt);font-size:clamp(1.3rem,2.6vw,1.7rem);font-weight:700;letter-spacing:-.01em}
+
+.no-list{list-style:none;display:flex;flex-direction:column;gap:15px;position:relative;z-index:1}
+.no-list li{display:flex;align-items:center;gap:13px;color:var(--txt-soft);font-size:.98rem}
+.no-list i{width:24px;height:24px;border-radius:50%;background:rgba(224,133,133,.12);border:1px solid rgba(224,133,133,.32);flex:none;display:grid;place-items:center}
+.no-list i svg{width:10px;height:10px;color:#e08585}
+
+.step-list{list-style:none;display:flex;flex-direction:column;gap:18px;position:relative;z-index:1}
+.step-row{display:flex;align-items:center;gap:15px}
+.stepbox{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(138,160,221,.4);flex:none;position:relative;transition:background-color .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease)}
+.stepbox span,.stepbox svg{position:absolute;inset:0;margin:auto;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.stepbox span{display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:600;color:var(--txt-soft)}
+.stepbox svg{opacity:0;transform:scale(.5);width:13px;height:13px;color:#fff}
+.step-row.done .stepbox{background:var(--blue);border-color:var(--blue);box-shadow:0 0 14px rgba(11,55,189,.65)}
+.step-row.done .stepbox span{opacity:0;transform:scale(.5)}
+.step-row.done .stepbox svg{opacity:1;transform:scale(1)}
+.step-row b{font-weight:600;color:var(--txt-mut);font-size:1.08rem;transition:color .4s var(--ease)}
+.step-row.done b{color:var(--txt)}
+
+/* ---------- Personalización antes/después ---------- */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:16px}
+.ba-card{background:#fff;border-radius:16px;padding:24px;color:#15161a;position:relative;box-shadow:0 24px 60px -30px rgba(0,0,0,.6)}
+.ba-card.gen{background:#f2f3f7;color:#8a8f9c}
+.ba-tag{position:absolute;top:16px;right:16px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:4px 9px;border-radius:6px}
+.ba-card.gen .ba-tag{background:#e2e4ea;color:#9aa0ad}
+.ba-card.mine .ba-tag{background:var(--blue);color:#fff}
+.ba-logo{height:22px;margin-bottom:16px;font-family:"Playfair Display",serif;font-style:italic;color:var(--blue);font-size:1.1rem}
+.ba-card.gen .ba-logo{color:#c2c6cf}
+.ba-card.mine{border-top:4px solid var(--blue);box-shadow:0 34px 70px -28px rgba(11,55,189,.4),0 24px 60px -30px rgba(0,0,0,.55)}
+
+/* generic (unbranded) document mockup — mirrors the real doc-crop's proportions, all flat gray */
+.gdoc{aspect-ratio:428/369;background:#fff;border-radius:12px;margin:-4px -4px 0;overflow:hidden;display:flex;flex-direction:column;border:1px solid #e7e9ee}
+.gdoc-head{background:#eceef3;padding:14px 16px;display:flex;align-items:center;gap:10px;flex:none}
+.gdoc-avatar{width:28px;height:28px;border-radius:50%;background:#d5d8e1;flex:none}
+.gdoc-head-lines{display:flex;flex-direction:column;gap:6px;flex:1}
+.gdoc-line{display:block;height:7px;border-radius:4px;background:#d5d8e1}
+.gdoc-line.w1{width:58%}.gdoc-line.w2{width:36%}
+.gdoc-line.sm{height:6px;background:#dfe1e7}
+.gdoc-body{padding:16px;display:flex;flex-direction:column;gap:12px}
+.gdoc-tag{display:block;width:34%;height:6px;border-radius:4px;background:#e2e4ea}
+.gdoc-title{display:block;width:62%;height:11px;border-radius:4px;background:#c9cdd6;margin-top:2px}
+.gdoc-cols{display:flex;gap:16px}
+.gdoc-field{display:flex;flex-direction:column;gap:6px;flex:1}
+.gdoc-label{display:block;height:5px;border-radius:3px;background:#e6e8ee;width:40%}
+.gdoc-label.sm{width:55%}
+.gdoc-value{display:block;height:8px;border-radius:4px;background:#ecedf2}
+.gdoc-value.w1{width:70%}.gdoc-value.w2{width:80%}.gdoc-value.w3{width:65%}
+/* real cropped capture — the branded header of the actual generated document,
+   framed from the full 1568x704 screenshot at offset (795,335) size (428,369) */
+.doc-crop{aspect-ratio:428/369;margin:-4px -4px 0}
+.doc-crop img{width:366.4%;height:190.8%;left:-185.7%;top:-90.8%}
+
+/* ---------- Value stack ---------- */
+.stack-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.srow{display:flex;align-items:center;gap:20px;padding:22px 26px;border:1px solid var(--peri-line);border-radius:16px;background:rgba(255,255,255,.02);transition:border-color .3s var(--ease),background .3s var(--ease)}
+.srow:hover{border-color:var(--peri);background:rgba(138,160,221,.05)}
+.srow .sn{font-family:"Playfair Display",serif;font-style:italic;font-size:1.3rem;color:var(--peri);flex:none;width:34px}
+.srow .sc{flex:1}
+.srow .sc b{display:block;font-weight:600;color:var(--txt);font-size:1.05rem;margin-bottom:3px;letter-spacing:-.01em}
+.srow .sc span{font-size:.92rem;color:var(--txt-soft)}
+.srow .sv{flex:none;font-weight:600;color:var(--peri);font-size:1.05rem;white-space:nowrap}
+.total{max-width:760px;margin:22px auto 0;display:flex;align-items:center;justify-content:space-between;
+  padding:26px 30px;border-radius:18px;border:1px solid rgba(28,79,224,.4);
+  background:linear-gradient(180deg,rgba(11,55,189,.18),rgba(11,55,189,.05))}
+.total span{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-mut);font-weight:500}
+.total b{font-size:clamp(2rem,5vw,3rem);font-weight:600;color:#fff;letter-spacing:-.02em}
+.total .strike{color:var(--txt-soft);text-decoration:line-through;font-weight:400;font-size:1.4rem;margin-right:2px}
+
+/* ---------- Pricing ---------- */
+.price-card{max-width:620px;margin:0 auto;text-align:center;
+  background:linear-gradient(180deg,rgba(138,160,221,.09),rgba(255,255,255,.02));
+  border:1px solid rgba(28,79,224,.4);border-radius:26px;padding:clamp(34px,5vw,56px);position:relative;overflow:hidden}
+.price-card::before{content:"";position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:120%;height:100%;background:radial-gradient(closest-side,rgba(11,55,189,.4),transparent 70%);filter:blur(30px)}
+.price-card>*{position:relative;z-index:1}
+.price-old{color:var(--txt-soft);font-size:1.05rem;margin-bottom:6px}
+.price-old s{opacity:.7}
+.price-now{display:flex;align-items:baseline;justify-content:center;gap:6px;margin:10px 0 4px}
+.price-now .cur{font-size:1.6rem;color:var(--peri);font-weight:500}
+.price-now .amt{font-size:clamp(3.4rem,9vw,5.2rem);font-weight:600;line-height:1;letter-spacing:-.03em;color:#fff}
+.price-card .sub{color:var(--txt-mut);margin:16px auto 30px;max-width:44ch}
+.price-card .btn{width:100%;max-width:440px}
+.price-card .fine{margin-top:18px;font-size:.85rem;color:var(--txt-soft)}
+
+/* ---------- Garantía ---------- */
+.guarantee{max-width:820px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;
+  border:1px solid var(--peri-line);border-radius:22px;padding:clamp(28px,4vw,44px);background:rgba(255,255,255,.02)}
+.guarantee .shield{width:88px;height:88px;flex:none;border-radius:22px;background:linear-gradient(135deg,var(--blue),var(--peri));display:grid;place-items:center}
+.guarantee .shield svg{width:42px;height:42px;color:#fff}
+.guarantee h3{margin-bottom:12px}
+.guarantee p{font-size:1rem;margin-bottom:10px}
+@media(max-width:640px){.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
+@media(max-width:700px){.prose .pull{white-space:normal;font-size:clamp(1.4rem,5.5vw,1.9rem);max-width:22ch}}
+
+/* ---------- FAQ (accordion) ---------- */
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{border:1px solid var(--peri-line);border-radius:16px;background:rgba(255,255,255,.02);overflow:hidden;transition:border-color .3s var(--ease),background-color .3s var(--ease)}
+.faq-item.open{border-color:rgba(138,160,221,.4);background:rgba(138,160,221,.04)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:20px 24px;background:none;border:none;font-family:inherit;text-align:left;cursor:pointer;
+  color:var(--txt);font-size:1.02rem;font-weight:500;letter-spacing:-.005em}
+.faq-q:focus-visible{outline:2px solid var(--peri);outline-offset:-2px}
+.faq-icon{width:26px;height:26px;border-radius:50%;background:rgba(138,160,221,.1);border:1px solid var(--peri-line);
+  flex:none;display:grid;place-items:center;transition:background-color .3s var(--ease),border-color .3s var(--ease)}
+.faq-icon svg{width:12px;height:12px;color:var(--peri);transition:transform .35s var(--ease),color .3s var(--ease)}
+.faq-item.open .faq-icon{background:var(--blue);border-color:var(--blue)}
+.faq-item.open .faq-icon svg{transform:rotate(135deg);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.faq-a-in p{padding:0 24px 22px;color:var(--txt-mut);font-size:.96rem;line-height:1.6;max-width:64ch}
+@media(max-width:640px){.faq-q{padding:17px 18px;font-size:.96rem;gap:12px}.faq-a-in p{padding:0 18px 18px}}
+
+/* ---------- Cierre ---------- */
+.cierre{text-align:center;max-width:780px;margin:0 auto}
+.cierre h2{margin-bottom:22px}
+.cierre p{font-size:1.12rem;margin-bottom:16px}
+.cierre .pull{font-family:"Inter Tight",sans-serif;font-weight:500;font-size:clamp(1.2rem,2.9vw,2.05rem);color:var(--txt);line-height:1.34;letter-spacing:-.02em;margin:30px auto;max-width:33ch}
+.cierre .pull .serif{font-size:1em}
+.cierre .btn{margin-top:12px}
+
+/* último bloque / scarcity */
+.scarcity{margin-top:70px;border-top:1px solid var(--peri-line);padding-top:56px;text-align:center;max-width:680px;margin-left:auto;margin-right:auto}
+.scarcity .warn{display:inline-flex;align-items:center;gap:9px;color:var(--peri);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:20px}
+.scarcity p{font-size:1rem;margin-bottom:14px}
+.scarcity .btn{margin-top:22px}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--peri-line);padding:40px 0;text-align:center;margin-top:90px}
+footer img{height:22px;margin:0 auto 14px;opacity:.6}
+footer p{font-size:.82rem;color:var(--txt-soft)}
+
+/* ---------- Sticky CTA ---------- */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;transform:translateY(130%);transition:transform .45s var(--ease);
+  background:rgba(16,16,18,.82);backdrop-filter:blur(14px);border-top:1px solid var(--peri-line)}
+.sticky.show{transform:translateY(0)}
+.sticky-in{max-width:var(--wrap);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.sticky-txt b{color:var(--txt);font-weight:600;font-size:.98rem}
+.sticky-txt span{display:block;font-size:.82rem;color:var(--txt-soft)}
+.sticky .btn{padding:13px 26px;font-size:.95rem;white-space:nowrap}
+@media(max-width:640px){.sticky-txt{display:none}.sticky .btn{width:100%}}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:60;
+  background:linear-gradient(90deg,var(--blue),var(--peri));box-shadow:0 0 12px rgba(138,160,221,.6)}
+
+/* ---------- Reveal (gated on JS so page is never hidden if JS fails) ---------- */
+.reveal-ready .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-ready .reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+.reveal[data-d="4"]{transition-delay:.32s}
+
+/* ---------- Full-contrast sections (real depth) ---------- */
+/* WHITE — the "paper" value list */
+.section-light{background:#ffffff;color:#15161a}
+.section-light .eyebrow{color:var(--blue);border-color:rgba(11,55,189,.22);background:rgba(11,55,189,.05)}
+.section-light .eyebrow::before{background:var(--blue);box-shadow:0 0 10px rgba(11,55,189,.5)}
+.section-light h2{color:#141519}
+.section-light .serif{color:var(--blue)}
+.section-light .lead,.section-light .sec-head p{color:#5c616d}
+.section-light .srow{background:#f6f7fb;border-color:#e7e9f1}
+.section-light .srow:hover{border-color:var(--blue);background:#eef1fb}
+.section-light .srow .sn{color:var(--blue)}
+.section-light .srow .sc b{color:#15161a}
+.section-light .srow .sc span{color:#6b7080}
+.section-light .srow .sv{color:var(--blue)}
+.section-light .total{background:linear-gradient(180deg,#eef2ff,#e2e9ff);border-color:rgba(11,55,189,.28)}
+.section-light .total span{color:#5c616d}
+.section-light .total b{color:#101014}
+.section-light .total .strike{color:#a2a7b3}
+
+.light-zone{background:#fff;color:#15161a}
+.light-zone .eyebrow{color:var(--blue);border-color:rgba(11,55,189,.22);background:rgba(11,55,189,.05)}
+.light-zone .eyebrow::before{background:var(--blue);box-shadow:0 0 10px rgba(11,55,189,.5)}
+.light-zone h2,.light-zone h3{color:#141519}
+.light-zone .serif{color:var(--blue)}
+.light-zone .lead,.light-zone .sec-head p,.light-zone p{color:#5c616d}
+.light-zone .feat-num{color:var(--blue)}
+.light-zone .count-line{color:#6b7080}
+.light-zone .count-line b{color:var(--blue)}
+.light-zone .wizard-punch{color:#15161a}
+.light-zone .no-list li{color:#6b7080}
+.light-zone .routine-sin .rc-body{background:#f6f7fb;border-color:#e7e9f1}
+.light-zone .routine-close{color:#15161a}
+.light-zone .ba-card.mine{border:1px solid #eceef3}
+
+/* BLUE — the price + CTA peak */
+.section-blue{background:radial-gradient(120% 92% at 50% -12%, #2a5cf0, #0B37BD 52%, #06239c);color:#fff;position:relative;overflow:hidden}
+.section-blue::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 55% at 50% 118%, rgba(0,0,0,.28), transparent 60%)}
+.section-blue>.wrap{position:relative;z-index:1}
+.section-blue .eyebrow{color:#fff;border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.12)}
+.section-blue .eyebrow::before{background:#fff;box-shadow:0 0 10px rgba(255,255,255,.7)}
+.section-blue h2{color:#fff}
+.section-blue .serif{color:#d5deff}
+.section-blue .sec-head p{color:rgba(255,255,255,.82)}
+.section-blue .price-card{background:#fff;border:1px solid rgba(255,255,255,.5);box-shadow:0 50px 90px -35px rgba(4,20,90,.7)}
+.section-blue .price-card::before{display:none}
+.section-blue .price-old{color:#8a8f9c}
+.section-blue .price-old s{color:#b3b8c4}
+.section-blue .price-now .cur{color:var(--blue)}
+.section-blue .price-now .amt{color:#101014}
+.section-blue .price-card .sub{color:#5c616d}
+.section-blue .price-card .fine{color:#9aa0ad}
+
+/* ---------- Responsive ---------- */
+@media(max-width:860px){
+  .feat,.ba,.routine-compare{grid-template-columns:1fr;gap:34px}
+  .feat.rev .feat-txt{order:0}
+  .doc-body{grid-template-columns:1fr}
+  .wizard{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .flow{grid-template-columns:1fr}
+  .srow{padding:18px}
+  .srow .sn{width:26px;font-size:1.1rem}
+  .total{flex-direction:column;gap:8px;text-align:center}
+  .htabs{max-width:100%;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none;justify-content:flex-start}
+  .htabs::-webkit-scrollbar{display:none}
+  .htab{padding:9px 15px;font-size:.78rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none;transition:none}
+  .doc-line,.doc-field .v{transform:none!important}
+  .doc-chk{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- scroll progress -->
+<div class="progress" id="progress"></div>
+
+<!-- 01 · HERO -->
+<header class="hero">
+  <div class="vgrid" id="vgrid" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow reveal">Tu compra fue confirmada</span>
+    <h1 class="reveal" data-d="1">Tu acceso está <span class="serif">siendo preparado</span>.</h1>
+    <p class="lead reveal" data-d="2">Mientras tanto, quiero mostrarte una herramienta que puede cambiar la forma en la que preparas tus materiales clínicos.</p>
+    <p class="hero-note reveal" data-d="3">En menos de 1 minuto, pasas de una pantalla en blanco a un documento profesional, personalizado y listo para utilizar.</p>
+
+    <!-- real product capture: smooth tabs — vista general + cada herramienta -->
+    <div class="doc-stage reveal" data-d="3">
+      <div class="doc-glow"></div>
+
+      <div class="htabs" id="heroTabs" role="tablist">
+        <span class="htab-ind" id="heroTabInd"></span>
+        <button type="button" class="htab active" data-tab="0" role="tab" aria-selected="true">Vista general</button>
+        <button type="button" class="htab" data-tab="1" role="tab" aria-selected="false">Herramienta 01</button>
+        <button type="button" class="htab" data-tab="2" role="tab" aria-selected="false">Herramienta 02</button>
+      </div>
+
+      <div class="shot-frame hero-stage" id="heroStage">
+        <span class="cap" id="heroCap">Plataforma real · en vivo</span>
+        <div class="hstage-item active" data-tab="0">
+          <video muted playsinline preload="none"><source src="assets/hero-vista-general-demo.mp4" type="video/mp4"></video>
+        </div>
+        <div class="hstage-item" data-tab="1">
+          <video muted playsinline preload="none"><source src="assets/historia-clinica-demo.mp4" type="video/mp4"></video>
+        </div>
+        <div class="hstage-item" data-tab="2">
+          <video muted playsinline preload="none"><source src="assets/hero-herramienta02-demo.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conoce -->
+    <div class="conoce reveal">
+      <img src="assets/logo-branca.svg" alt="Clínica en Orden Pro" class="logo-mark">
+      <h2>Conoce <span class="serif">Clínica en Orden Pro</span></h2>
+      <p>Una plataforma de herramientas clínicas creada para psicólogos que quieren dejar de perder tiempo creando documentos y materiales desde cero.</p>
+      <a href="#oferta" class="btn btn-lg">Quiero conocer Clínica en Orden Pro
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- 02 · TESTIMONIOS -->
+<section class="sec-sm tst-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Testimonios</span>
+      <h2>Lo que dicen otros <span class="serif">psicólogos</span></h2>
+    </div>
+  </div>
+
+  <div class="tst-rail reveal" id="tstRail">
+    <div class="tst-track" id="tstTrack">
+      <!-- cards injected by JS (duplicated for seamless loop) -->
+    </div>
+  </div>
+</section>
+
+<!-- 03 · EVOLUCIÓN -->
+<section class="sec">
+  <div class="wrap prose">
+    <span class="eyebrow reveal" style="margin-bottom:22px">La evolución natural de tu trabajo clínico</span>
+    <h2 class="reveal evo-h2" data-d="1">Tener buenos materiales importa. Tener una <span class="serif">herramienta</span> para crearlos es otra cosa.</h2>
+    <p class="reveal" data-d="2"><strong style="color:var(--txt);font-weight:500">Clínica en Orden — Ansiedad</strong> puso materiales clínicos listos para usar en tus manos. Pero en la práctica sabes que no siempre necesitas exactamente el mismo documento para todos tus pacientes.</p>
+    <div class="escalate" id="escalate">
+      <div class="e-row"><span class="e-rail"><span class="e-dot"></span><span class="e-thread"></span></span><span class="e-text">Cada proceso es diferente.</span></div>
+      <div class="e-row"><span class="e-rail"><span class="e-dot"></span><span class="e-thread"></span></span><span class="e-text">Cada sesión puede requerir un registro diferente.</span></div>
+      <div class="e-row"><span class="e-rail"><span class="e-dot"></span></span><span class="e-text">Cada paciente puede necesitar una tarea diferente.</span></div>
+    </div>
+    <p class="pull reveal" data-d="4">Y ahí es donde entra <span class="serif">Clínica en Orden Pro</span>.</p>
+    <p class="reveal">En lugar de empezar desde cero, empiezas con una estructura preparada. Elige lo que necesitas, completa la información, personaliza el documento con la identidad de tu consulta y listo. Tu documento está preparado para utilizarlo.</p>
+  </div>
+</section>
+
+<!-- 04 · UNA PLATAFORMA, DOS HERRAMIENTAS -->
+<section class="sec" id="oferta">
+  <div class="wrap">
+    <div class="sec-head sec-head-wide reveal">
+      <span class="eyebrow">Una plataforma · Dos herramientas</span>
+      <h2 class="herr-h2">Todo para transformar información en <span class="serif">documentos profesionales</span></h2>
+    </div>
+
+    <!-- Tool 01 -->
+    <div class="feat feat-stack">
+      <div class="feat-txt reveal">
+        <span class="feat-num">Herramienta 01</span>
+        <h3>Historia clínica del paciente</h3>
+        <p>Deja de crear tus fichas manualmente. Completa los datos del paciente, su demanda, los objetivos del trabajo y la información de las sesiones. Mientras completas el formulario, tu documento va tomando forma en tiempo real.</p>
+        <ul class="neg">
+          <li>Sin documentos desordenados.</li>
+          <li>Sin empezar desde cero.</li>
+          <li>Sin perder tiempo dando formato después.</li>
+        </ul>
+        <ul class="chk-list" style="margin-top:22px">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></i>Datos del paciente</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></i>Información del tipo de atención</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></i>Demanda y objetivos terapéuticos</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></i>Descripción de las sesiones</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></i>Información complementaria</li>
+        </ul>
+        <p style="margin-top:22px">Y obtienes un documento profesional listo para <strong style="color:var(--txt);font-weight:500">imprimir o descargar en PDF</strong>.</p>
+      </div>
+      <div class="mac-col reveal" data-d="1">
+        <div class="mac-glow"></div>
+        <div class="mac-mock">
+          <div class="mac-lid">
+            <div class="mac-cam"></div>
+            <div class="mac-screen">
+              <div class="mac-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor" stroke="none"/></svg></div>
+              <video class="mac-video" autoplay muted loop playsinline>
+                <source src="assets/historia-clinica-demo.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="mac-base"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg class="table-transition" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,220 L0,168 C230,168 380,42 600,42 C820,42 970,168 1200,168 L1200,220 Z" fill="#fff"/>
+  </svg>
+</section>
+
+<div class="light-zone">
+
+<!-- 05 · GENERADOR DE TAREAS -->
+<section class="sec-sm">
+  <div class="wrap">
+    <div class="feat rev">
+      <div class="feat-txt reveal">
+        <span class="feat-num">Herramienta 02</span>
+        <h3>¿Y cuando tu paciente necesita una tarea?</h3>
+        <p>No necesitas pasar horas buscando o creando una actividad. El Generador de Tareas Terapéuticas te ayuda a encontrar una tarea adecuada para el objetivo que estás trabajando. Solo eliges 3 elementos:</p>
+        <div class="count-line" style="text-align:left;margin-top:8px">Encontrarás <b>19 tareas estructuradas basadas en TCC</b>, con instrucciones paso a paso y campos de registro para trabajar entre sesiones.</div>
+        <p class="wizard-punch">Tú eliges. La herramienta organiza. Y el material queda <span class="serif">listo</span>.</p>
+      </div>
+      <div class="phone-col reveal" data-d="1">
+        <div class="phone-glow"></div>
+        <div class="phone-mock">
+          <div class="phone-notch-mask"></div>
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor" stroke="none"/></svg></div>
+            <video class="phone-video" autoplay muted loop playsinline>
+              <source src="assets/wizard-demo-compressed.mp4" type="video/mp4">
+              <source src="assets/wizard-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+          <span class="phone-btn phone-btn-power"></span>
+          <span class="phone-btn phone-btn-vol1"></span>
+          <span class="phone-btn phone-btn-vol2"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · PERSONALIZACIÓN -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head sec-head-wide reveal">
+      <span class="eyebrow">Con la identidad de tu consulta</span>
+      <h2 class="pers-h2">No es solo un documento preparado. Es un documento <span class="serif">tuyo</span>.</h2>
+      <p class="lead" style="margin-top:16px">Añade tu propio logotipo. Elige los colores de tu identidad visual. Genera el documento con la imagen de tu consulta.</p>
+    </div>
+    <div class="ba" style="max-width:820px;margin:0 auto">
+      <div class="ba-card gen reveal" data-d="1">
+        <span class="ba-tag">Genérico</span>
+        <div class="ba-logo">documento sin marca</div>
+        <div class="gdoc">
+          <div class="gdoc-head">
+            <span class="gdoc-avatar"></span>
+            <div class="gdoc-head-lines"><span class="gdoc-line w1"></span><span class="gdoc-line w2 sm"></span></div>
+          </div>
+          <div class="gdoc-body">
+            <span class="gdoc-tag"></span>
+            <span class="gdoc-title"></span>
+            <div class="gdoc-field"><span class="gdoc-label"></span><span class="gdoc-value w1"></span></div>
+            <div class="gdoc-cols">
+              <div class="gdoc-field"><span class="gdoc-label sm"></span><span class="gdoc-value w2"></span></div>
+              <div class="gdoc-field"><span class="gdoc-label sm"></span><span class="gdoc-value w2"></span></div>
+            </div>
+            <div class="gdoc-cols">
+              <div class="gdoc-field"><span class="gdoc-label sm"></span><span class="gdoc-value w3"></span></div>
+              <div class="gdoc-field"><span class="gdoc-label sm"></span><span class="gdoc-value w3"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ba-card mine reveal" data-d="2">
+        <span class="ba-tag">Tu consulta</span>
+        <div class="ba-logo">Documento real</div>
+        <div class="shot-crop doc-crop">
+          <img src="assets/prontuario-doc-static.gif" alt="Cabecera del documento con el logo, el nombre y el color de la consulta del psicólogo" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;color:#5c616d;margin-top:30px;max-width:52ch;margin-left:auto;margin-right:auto" class="reveal">No tiene por qué parecer una herramienta de terceros. El documento se presenta con <strong style="color:#15161a;font-weight:500">tu propia identidad profesional</strong>.</p>
+  </div>
+</section>
+
+<!-- 07 · RUTINA -->
+<section class="sec-sm">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Diseñada para tu rutina</span>
+      <h2>Imagina que necesitas un material para tu <span class="serif">próximo paciente</span></h2>
+    </div>
+    <div class="routine-compare">
+      <div class="routine-card routine-sin reveal" data-d="1">
+        <div class="rc-badge"><img src="assets/icon-sin.svg" alt=""></div>
+        <div class="rc-body">
+          <span class="rc-label">Sin Clínica en Orden Pro</span>
+          <ul class="no-list">
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Abrir decenas de archivos antiguos</li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Buscar una ficha perdida en tu ordenador</li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Copiar y pegar documentos</li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Dar formato manualmente</li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Buscar una tarea adecuada en internet</li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Ajustar el documento antes de entregarlo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="routine-card routine-con reveal" data-d="2" id="routineCon">
+        <div class="rc-badge"><img src="assets/icon-con.svg" alt=""></div>
+        <div class="rc-body">
+          <span class="rc-label">Con Clínica en Orden Pro</span>
+          <ul class="step-list">
+            <li class="step-row"><span class="stepbox"><span>1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg></span><b>Eliges</b></li>
+            <li class="step-row"><span class="stepbox"><span>2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg></span><b>Completas</b></li>
+            <li class="step-row"><span class="stepbox"><span>3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg></span><b>Personalizas</b></li>
+            <li class="step-row"><span class="stepbox"><span>4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg></span><b>Descargas</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="routine-close reveal">Y continúas con tu siguiente paciente.</p>
+  </div>
+</section>
+
+</div>
+
+<!-- 08 · VALUE STACK (white paper) -->
+<section class="sec section-light">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Todo lo que recibes</span>
+      <h2>Tu acceso a <span class="serif">Clínica en Orden Pro</span> incluye</h2>
+    </div>
+    <div class="stack-list">
+      <div class="srow reveal"><span class="sn">01</span><div class="sc"><b>Historia clínica del paciente</b><span>Una ficha estructurada para organizar la información de tus sesiones.</span></div><span class="sv">€29</span></div>
+      <div class="srow reveal" data-d="1"><span class="sn">02</span><div class="sc"><b>Generador de tareas terapéuticas</b><span>Encuentra tareas según el foco, el momento y el objetivo terapéutico.</span></div><span class="sv">€39</span></div>
+      <div class="srow reveal" data-d="1"><span class="sn">03</span><div class="sc"><b>19 tareas terapéuticas estructuradas</b><span>Actividades basadas en la TCC, con instrucciones y campos de registro.</span></div><span class="sv">€47</span></div>
+      <div class="srow reveal" data-d="2"><span class="sn">04</span><div class="sc"><b>Personalización con tu logotipo</b><span>Añade la identidad visual de tu consulta a tus documentos.</span></div><span class="sv">€19</span></div>
+      <div class="srow reveal" data-d="2"><span class="sn">05</span><div class="sc"><b>Personalización de colores</b><span>Elige los colores de tus documentos.</span></div><span class="sv">€9</span></div>
+      <div class="srow reveal" data-d="3"><span class="sn">06</span><div class="sc"><b>Generación de documentos en PDF</b><span>Texto real y seleccionable, listo para imprimir o archivar.</span></div><span class="sv">€19</span></div>
+    </div>
+    <div class="total reveal" data-d="1">
+      <span>Valor total de los recursos</span>
+      <b><span class="strike">€162</span></b>
+    </div>
+    <p style="text-align:center;color:#5c616d;margin-top:26px;font-size:1.05rem" class="reveal">Pero no necesitas pagar €162 para empezar a utilizar Clínica en Orden Pro.</p>
+  </div>
+</section>
+
+<!-- 09 · PRICING (blue peak) -->
+<section class="sec-sm section-blue" id="checkout">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Tu condición especial de acceso</span>
+      <h2>Convierte 1 minuto de trabajo en un <span class="serif">documento profesional</span></h2>
+    </div>
+    <div class="price-card reveal" data-d="1">
+      <p class="price-old">Precio habitual de acceso <s>€67</s></p>
+      <div class="price-now"><span class="cur">€</span><span class="amt">47</span></div>
+      <p class="sub">Tu acceso incluye todas las herramientas y recursos que acabas de conocer.</p>
+      <a href="#" class="btn btn-lg">Sí, quiero activar Clínica en Orden Pro por €47
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="fine">Pago único · Acceso inmediato tras la confirmación</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · GARANTÍA -->
+<section class="sec-sm">
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <div class="shield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div>
+        <h3>Prueba Clínica en Orden Pro sin asumir el riesgo</h3>
+        <p>Tendrás <strong style="color:var(--peri);font-weight:500">7 días</strong> para conocer la plataforma, probar sus herramientas y comprobar cómo encaja en tu práctica clínica.</p>
+        <p>Si descubres que no es para ti, solo tienes que solicitar el reembolso dentro del periodo de garantía. Sin complicaciones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10.5 · FAQ -->
+<section class="sec-sm">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Todo lo que necesitas <span class="serif">saber</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Puedo acceder a Clínica en Orden Pro desde cualquier dispositivo?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Sí. Puedes acceder a Clínica en Orden Pro desde cualquier dispositivo con conexión a Internet: ordenador, portátil, tablet o teléfono móvil. Tu acceso está vinculado a tu cuenta, por lo que puedes utilizar la plataforma desde el dispositivo que tengas disponible.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Puedo utilizar Clínica en Orden Pro desde mi teléfono móvil?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Sí, completamente. Puedes acceder desde tu móvil, completar los formularios, preparar tus documentos, personalizarlos y descargar el PDF directamente desde el teléfono. No necesitas estar delante del ordenador para utilizar la plataforma.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Necesito instalar alguna aplicación?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>No. Clínica en Orden Pro funciona directamente desde el navegador. No necesitas instalar ninguna aplicación ni programa. Solo tienes que entrar con tus datos de acceso y empezar a utilizarla.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Puedo utilizarla desde varios dispositivos?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Sí. Puedes iniciar sesión desde tu ordenador, tablet o móvil y utilizar las herramientas desde cualquiera de ellos.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Puedo descargar los documentos en PDF?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Sí. Cuando termines de preparar un documento, puedes descargarlo en PDF con texto real y seleccionable o imprimirlo directamente.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Los documentos llevan la marca de Clínica en Orden?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>No. Puedes personalizar los documentos con tu propio logotipo y los colores de tu consulta. De esta forma, el material que entregas al paciente mantiene la identidad visual de tu práctica profesional.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Cuánto tiempo necesito para crear un documento?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>La plataforma está diseñada para que puedas tener un documento preparado en menos de 1 minuto, dependiendo del tipo de documento y de la información que quieras incluir.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Necesito conocimientos técnicos para utilizarla?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>No. Las herramientas funcionan mediante formularios y pasos sencillos. Solo tienes que completar la información y seguir las indicaciones de cada herramienta.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Puedo modificar o adaptar las tareas terapéuticas?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Sí. Las tareas están estructuradas para ayudarte a ahorrar tiempo en la preparación del material, pero puedes revisarlas y adaptarlas según las necesidades de cada paciente y tu criterio profesional.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Las tareas sirven para cualquier paciente?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Las tareas están organizadas según diferentes focos clínicos, momentos del proceso y objetivos de trabajo. La herramienta te ayuda a encontrar una propuesta adecuada para el contexto seleccionado, pero el criterio profesional del psicólogo siempre debe guiar su utilización.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Cuándo recibiré mis datos de acceso?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Después de completar la compra, recibirás las instrucciones necesarias para acceder a Clínica en Orden Pro en el correo electrónico utilizado durante el proceso de compra.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Qué ocurre si tengo algún problema con la plataforma?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Si tienes cualquier problema con el acceso o con el funcionamiento de la plataforma, podrás contactar con nuestro equipo de soporte para recibir ayuda.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Existe una garantía?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>Sí. Dispones de <strong style="color:var(--txt);font-weight:500">7 días de garantía</strong> para probar Clínica en Orden Pro. Si consideras que la herramienta no es para ti, puedes solicitar el reembolso dentro del periodo establecido.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span>¿Clínica en Orden Pro sustituye mi criterio profesional?</span>
+          <i class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></i>
+        </button>
+        <div class="faq-a"><div class="faq-a-in"><p>No. Clínica en Orden Pro es una herramienta de apoyo diseñada para ayudarte a preparar y organizar materiales clínicos de forma más rápida. Las decisiones relacionadas con cada paciente y el uso de cada material corresponden siempre al profesional.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · CIERRE -->
+<section class="sec">
+  <div class="wrap cierre">
+    <span class="eyebrow reveal" style="margin-bottom:24px">El cierre</span>
+    <h2 class="reveal" data-d="1">Puedes seguir creando tus materiales <span class="serif">manualmente</span>…</h2>
+    <p class="reveal" data-d="2">O puedes tener una herramienta que haga gran parte de ese trabajo contigo.</p>
+    <p class="pull reveal">Quitar de en medio el trabajo repetitivo para que dediques tu tiempo a lo que realmente importa: <span class="serif">tus pacientes</span>.</p>
+    <p class="reveal" style="color:var(--txt);font-weight:500;font-size:1.15rem">Tu acceso está disponible ahora.</p>
+    <a href="#checkout" class="btn btn-lg reveal" data-d="1">Quiero activar mi acceso a Clínica en Orden Pro
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+
+    <!-- último bloque -->
+    <div class="scarcity reveal">
+      <span class="warn"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16v.5"/></svg>Solo durante este proceso de compra</span>
+      <p>Esta condición especial está disponible únicamente durante este proceso de compra. Si abandonas esta página, es posible que esta oferta no vuelva a estar disponible en las mismas condiciones.</p>
+      <p>Al aceptar esta oferta, tu pedido se actualizará automáticamente y recibirás las instrucciones para acceder a Clínica en Orden Pro.</p>
+      <a href="#checkout" class="btn">Sí, quiero Clínica en Orden Pro
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo-branca.svg" alt="Clínica en Orden Pro">
+    <p>Clínica en Orden Pro · Herramientas clínicas para psicólogos</p>
+  </div>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky" id="sticky">
+  <div class="sticky-in">
+    <div class="sticky-txt"><b>Clínica en Orden Pro · €47</b><span>Precio habitual €67 · solo en esta página</span></div>
+    <a href="#checkout" class="btn">Activar mi acceso</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var docEl = document.documentElement;
+  // Only hide reveals once we know JS runs and IO is available; otherwise leave everything visible.
+  if(!reduce && 'IntersectionObserver' in window){ docEl.classList.add('reveal-ready'); }
+
+  /* Testimonials — full-width auto-carousel with edge falloff (adapted from the
+     Framer "Logo 3D Carousel": mask fade + scale/blur falloff near the rail edges,
+     here kept subtle so the quote text stays readable) */
+  (function(){
+    var rail=document.getElementById('tstRail'), track=document.getElementById('tstTrack');
+    if(!rail||!track) return;
+
+    var TESTIMONIOS=[
+      {name:'Laura Martínez', role:'Psicóloga', title:'No pensaba que preparar estos materiales me quitara tanto tiempo.',
+       body:'Antes tenía que buscar documentos, adaptarlos y dejarlo todo preparado para cada paciente. Ahora puedo tener una tarea lista en unos minutos y seguir con lo importante.', date:'12 de mayo de 2026'},
+      {name:'Marta Sánchez', role:'Psicóloga', title:'La diferencia se nota cuando dejas de empezar desde cero.',
+       body:'Me resulta mucho más fácil preparar una tarea para cada paciente. Elijo el foco, el momento y el objetivo, y ya tengo una propuesta sobre la que trabajar.', date:'27 de abril de 2026'},
+      {name:'Ana Rodríguez', role:'Psicóloga', title:'Por fin puedo entregar materiales que parecen realmente míos.',
+       body:'Poner mi logo y los colores de mi consulta hace que el material tenga otro aspecto completamente distinto. Para el paciente parece un documento preparado por mí, no una plantilla cualquiera.', date:'8 de junio de 2026'},
+      {name:'Carlos García', role:'Psicólogo', title:'No sabía cuánto tiempo perdía haciendo fichas a mano.',
+       body:'Ahora voy rellenando la información y el documento se va preparando al mismo tiempo. Para el día a día de la consulta es muchísimo más cómodo.', date:'19 de marzo de 2026'},
+      {name:'Elena Fernández', role:'Psicóloga', title:'Lo que más me gusta es que no tengo que pensar demasiado qué tarea preparar.',
+       body:'Cuando voy justa de tiempo, entro, selecciono lo que estoy trabajando con el paciente y tengo una tarea estructurada sobre la que partir. Me facilita bastante la preparación entre sesiones.', date:'3 de julio de 2026'},
+      {name:'Javier López', role:'Psicólogo', title:'Hay días en los que cinco minutos hacen toda la diferencia.',
+       body:'Entre pacientes no siempre tienes tiempo para preparar materiales. Poder generar algo, personalizarlo y descargarlo en un momento me resulta muy práctico.', date:'21 de junio de 2026'},
+      {name:'Sara Moreno', role:'Psicóloga', title:'Pensaba que iba a ser otra herramienta complicada y no.',
+       body:'Es bastante directa. Entras, eliges lo que necesitas, completas los datos y tienes el documento preparado. No necesito estar aprendiendo mil cosas para utilizarla.', date:'14 de abril de 2026'},
+      {name:'Daniel Torres', role:'Psicólogo', title:'Ahora mis materiales tienen la imagen de mi propia consulta.',
+       body:'Parece un detalle, pero cuando entregas al paciente un documento con tu logo y tus colores se siente mucho más profesional y cuidado.', date:'6 de mayo de 2026'}
+    ];
+
+    var STAR='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.6 7.1.7-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7-5.4-4.7 7.1-.7z"/></svg>';
+    var CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg>';
+
+    function cardHTML(t){
+      return '<article class="tst">'
+        +'<div class="tst-head"><span class="tst-name">'+t.name+' · '+t.role+'</span>'
+        +'<span class="tst-check">'+CHECK+'</span><span class="tst-verified">Reseñador verificado</span></div>'
+        +'<div class="tst-stars">'+STAR+STAR+STAR+STAR+STAR+'</div>'
+        +'<h4>'+t.title+'</h4>'
+        +'<p>'+t.body+'</p>'
+        +'<span class="tst-date">'+t.date+'</span>'
+        +'</article>';
+    }
+    // duplicate the set so the loop is seamless
+    var html = TESTIMONIOS.map(cardHTML).join('') + TESTIMONIOS.map(cardHTML).join('');
+    track.innerHTML = html;
+
+    var cards = Array.prototype.slice.call(track.children);
+    var setWidth = 0; // width of one full (non-duplicated) set, computed after layout
+
+    function measure(){
+      var half = cards.length/2;
+      var last = cards[half-1], first = cards[0];
+      setWidth = (last.offsetLeft + last.offsetWidth) - first.offsetLeft + 22; // + gap
+    }
+
+    var x = 0, paused = false;
+    var SPEED = 26; // px/second — slow, so people can actually read the cards
+    var lastT = null;
+
+    function updateFalloff(){
+      var railRect = rail.getBoundingClientRect();
+      var centerX = railRect.left + railRect.width/2;
+      var half = railRect.width/2;
+      cards.forEach(function(c){
+        var r = c.getBoundingClientRect();
+        var cCenter = r.left + r.width/2;
+        var dist = Math.abs(cCenter - centerX) / half; // 0 center → 1+ at edge
+        var fall = Math.max(0, Math.min(1, (dist - 0.35) / 0.65)); // start falling off past 35% from center
+        c.style.setProperty('--fall', fall.toFixed(3));
+      });
+    }
+
+    function setX(nx){
+      // keep x normalized to one loop so it never drifts to huge numbers
+      if(setWidth>0){
+        while(-nx >= setWidth) nx += setWidth;
+        while(nx > 0) nx -= setWidth;
+      }
+      x = nx;
+      track.style.transform='translateX('+x+'px)';
+    }
+
+    function tick(t){
+      if(lastT===null) lastT=t;
+      var dt=(t-lastT)/1000; lastT=t;
+      if(!paused && setWidth>0){
+        x -= SPEED*dt;
+        if(-x >= setWidth) x += setWidth;
+        track.style.transform='translateX('+x+'px)';
+      }
+      updateFalloff();
+      requestAnimationFrame(tick);
+    }
+
+    /* Click-and-drag: pull the rail to browse testimonials manually */
+    var dragging=false, dragStartX=0, dragStartTx=0, resumeTimer=null;
+
+    function dragStart(e){
+      dragging=true; paused=true;
+      dragStartX = e.touches ? e.touches[0].clientX : e.clientX;
+      dragStartTx = x;
+      rail.classList.add('dragging');
+      clearTimeout(resumeTimer);
+      if(!e.touches && rail.setPointerCapture && e.pointerId!==undefined){
+        try{ rail.setPointerCapture(e.pointerId); }catch(_){}
+      }
+    }
+    function dragMove(e){
+      if(!dragging) return;
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      setX(dragStartTx + (cx - dragStartX));
+      if(!e.touches) e.preventDefault();
+    }
+    function dragEnd(){
+      if(!dragging) return;
+      dragging=false;
+      rail.classList.remove('dragging');
+      // brief pause before auto-scroll resumes, so the release feels deliberate
+      resumeTimer=setTimeout(function(){ paused=false; },500);
+    }
+
+    rail.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    rail.addEventListener('pointerdown', dragStart);
+    window.addEventListener('pointermove', dragMove);
+    window.addEventListener('pointerup', dragEnd);
+    window.addEventListener('pointercancel', dragEnd);
+    rail.addEventListener('touchstart', dragStart, {passive:true});
+    rail.addEventListener('touchmove', dragMove, {passive:true});
+    rail.addEventListener('touchend', dragEnd);
+
+    if(reduce){
+      // static: no auto-scroll, but keep falloff + manual drag
+      requestAnimationFrame(function(){ measure(); updateFalloff(); });
+    } else {
+      requestAnimationFrame(function(){ measure(); requestAnimationFrame(tick); });
+      rail.addEventListener('mouseenter', function(){ if(!dragging) paused=true; });
+      rail.addEventListener('mouseleave', function(){ if(!dragging) paused=false; });
+      window.addEventListener('resize', measure);
+    }
+  })();
+
+  /* Escalate section: per-word scroll blur-reveal + dot lighting, ported from the
+     "Scroll Reveal" mechanic used on the WWV Studio site — each word starts blurred/dim
+     and sharpens left-to-right as its row scrolls through a reveal band; the row's dot
+     lights up once its text is (mostly) revealed. */
+  (function(){
+    var escalate = document.getElementById('escalate');
+    if(!escalate) return;
+    var rows = Array.prototype.slice.call(escalate.querySelectorAll('.e-row'));
+    if(reduce || !rows.length) return; // reduced-motion: leave words at full opacity (CSS default)
+
+    rows.forEach(function(row){
+      var textEl = row.querySelector('.e-text');
+      var words = textEl.textContent.trim().split(/\s+/);
+      textEl.innerHTML = words.map(function(w){ return '<span class="sr-word">'+w+'</span>'; }).join(' ');
+    });
+    escalate.classList.add('sr-ready');
+
+    var rowData = rows.map(function(row){
+      return { row:row, words:Array.prototype.slice.call(row.querySelectorAll('.sr-word')), dot:row.querySelector('.e-dot') };
+    });
+
+    function updateEscalate(){
+      var vh = window.innerHeight;
+      var start = vh*0.86, end = vh*0.5; // reveal band: text sharpens as it climbs through this zone
+      rowData.forEach(function(d){
+        var rect = d.row.getBoundingClientRect();
+        var progress = (start - rect.top) / (start - end);
+        progress = Math.max(0, Math.min(1, progress));
+        var n = d.words.length;
+        d.words.forEach(function(w, i){
+          var wp = (progress - i/n) * n;
+          wp = Math.max(0, Math.min(1, wp));
+          w.style.opacity = (0.12 + 0.88*wp).toFixed(3);
+          w.style.filter = 'blur(' + ((1-wp)*3).toFixed(2) + 'px)';
+        });
+        if(d.dot){
+          if(progress >= 0.85) d.dot.classList.add('lit');
+          else if(progress < 0.45) d.dot.classList.remove('lit'); // hysteresis gap avoids flicker
+        }
+      });
+      requestAnimationFrame(updateEscalate);
+    }
+    requestAnimationFrame(updateEscalate);
+  })();
+
+  /* Rutina "CON" card: checklist ticks itself off automatically once the card scrolls into view */
+  (function(){
+    var con = document.getElementById('routineCon');
+    if(!con) return;
+    var rows = Array.prototype.slice.call(con.querySelectorAll('.step-row'));
+    if(!rows.length) return;
+
+    function play(){
+      if(reduce){ rows.forEach(function(r){ r.classList.add('done'); }); return; }
+      rows.forEach(function(r, i){ setTimeout(function(){ r.classList.add('done'); }, 350 + i*420); });
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ play(); io.unobserve(e.target); } });
+    }, { threshold: 0.45 });
+    io.observe(con);
+  })();
+
+  /* FAQ accordion — each item toggles independently.
+     Uses a JS-measured max-height transition rather than the grid-template-rows
+     0fr→1fr trick: that trick didn't resolve reliably in this app's preview
+     browser engine, so max-height is the more robust cross-engine choice here. */
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var btn = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    var inner = item.querySelector('.faq-a-in');
+    btn.addEventListener('click', function(){
+      var open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      a.style.maxHeight = open ? inner.offsetHeight + 'px' : '0px';
+    });
+  });
+  window.addEventListener('resize', function(){
+    document.querySelectorAll('.faq-item.open').forEach(function(item){
+      var a = item.querySelector('.faq-a'), inner = item.querySelector('.faq-a-in');
+      a.style.maxHeight = inner.offsetHeight + 'px';
+    });
+  });
+
+  /* Hero smooth tabs — sliding pill indicator + crossfading preview (image/video per tab) */
+  (function(){
+    var wrap = document.getElementById('heroTabs');
+    if (!wrap) return;
+    var ind = document.getElementById('heroTabInd');
+    var tabs = Array.prototype.slice.call(wrap.querySelectorAll('.htab'));
+    var items = Array.prototype.slice.call(document.querySelectorAll('#heroStage .hstage-item'));
+    var cap = document.getElementById('heroCap');
+    var caps = ['Plataforma real · en vivo', 'Historia clínica en vivo', 'Generador de tareas en vivo'];
+    var count = items.length;
+
+    function moveIndicator(btn){
+      ind.style.width = btn.offsetWidth + 'px';
+      ind.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
+    }
+    function setTab(i){
+      i = ((i % count) + count) % count; // wrap around either direction
+      tabs.forEach(function(t){
+        var on = t.dataset.tab === String(i);
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (on) { moveIndicator(t); t.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }
+      });
+      items.forEach(function(it){
+        var on = it.dataset.tab === String(i);
+        it.classList.toggle('active', on);
+        var v = it.querySelector('video');
+        if (!v) return;
+        if (on) { v.currentTime = 0; v.play && v.play().catch(function(){}); }
+        else { v.pause && v.pause(); }
+      });
+      if (cap) cap.textContent = caps[i] || caps[0];
+    }
+    tabs.forEach(function(btn){
+      btn.addEventListener('click', function(){ setTab(Number(btn.dataset.tab)); });
+    });
+    // auto-advance: when the active tab's video finishes, move to the next one (loops back to 0 after the last)
+    items.forEach(function(it){
+      var v = it.querySelector('video');
+      if (!v) return;
+      v.addEventListener('ended', function(){
+        if (!it.classList.contains('active')) return;
+        setTab(Number(it.dataset.tab) + 1);
+      });
+    });
+    window.addEventListener('resize', function(){
+      var active = wrap.querySelector('.htab.active');
+      if (active) moveIndicator(active);
+    });
+    requestAnimationFrame(function(){ moveIndicator(tabs[0]); var v0 = items[0].querySelector('video'); if (v0) v0.play().catch(function(){}); });
+  })();
+
+  /* Historia clínica demo video plays back faster for a snappier preview */
+  (function(){
+    var v = document.querySelector('.mac-video');
+    if (!v) return;
+    v.playbackRate = 1.75;
+    v.addEventListener('loadedmetadata', function(){ v.playbackRate = 1.75; });
+    v.addEventListener('play', function(){ v.playbackRate = 1.75; });
+  })();
+
+  /* Vertical grid lines with traveling light segments */
+  var vg=document.getElementById('vgrid');
+  if(vg){
+    var N=Math.max(6, Math.min(14, Math.round(window.innerWidth/120)));
+    for(var i=0;i<N;i++){
+      var line=document.createElement('div'); line.className='vline';
+      if(!reduce){
+        var beam=document.createElement('div'); beam.className='vbeam';
+        beam.style.setProperty('--dur',(4+Math.random()*5).toFixed(2)+'s');
+        beam.style.setProperty('--delay',(Math.random()*7).toFixed(2)+'s');
+        line.appendChild(beam);
+      }
+      vg.appendChild(line);
+    }
+  }
+
+  /* Lenis smooth scroll */
+  if(!reduce && window.Lenis){
+    var lenis = new Lenis({ duration:1.15, easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}, smoothWheel:true });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(e){
+        var id=a.getAttribute('href'); if(id.length<2)return;
+        var el=document.querySelector(id); if(!el)return;
+        e.preventDefault(); lenis.scrollTo(el,{offset:-20});
+      });
+    });
+  }
+
+  /* Reveal on scroll */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* Scroll progress bar */
+  var prog=document.getElementById('progress');
+  function updProg(){
+    if(!prog)return;
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?(window.scrollY/h)*100:0)+'%';
+  }
+  updProg();
+
+  /* Sticky CTA: show after hero, hide near final CTA */
+  var sticky=document.getElementById('sticky');
+  var oferta=document.getElementById('oferta');
+  var cierre=document.querySelector('.cierre');
+  window.addEventListener('scroll',function(){
+    updProg();
+    if(!oferta||!cierre)return;
+    var y=window.scrollY, start=oferta.offsetTop-600, end=cierre.offsetTop-200;
+    if(y>start && y<end){ sticky.classList.add('show'); } else { sticky.classList.remove('show'); }
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
