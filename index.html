@@ -142,7 +142,7 @@ p{color:var(--txt-mut)}
 .shot-frame .cap::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
 
 /* Hero "smooth tabs" — segmented pill switcher w/ sliding indicator + crossfading preview */
-.htabs{display:inline-flex;gap:2px;padding:5px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--peri-line);position:relative;margin:0 auto 22px}
+.htabs{display:inline-flex;gap:2px;padding:5px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--peri-line);position:relative;margin:0 auto 22px;overflow:hidden}
 .htab{position:relative;z-index:2;border:0;background:transparent;font:inherit;font-size:.86rem;font-weight:600;color:var(--txt-soft);padding:10px 22px;border-radius:100px;cursor:pointer;transition:color .3s var(--ease);white-space:nowrap}
 .htab.active{color:#fff}
 .htab:focus-visible{outline:2px solid var(--peri);outline-offset:2px}
@@ -1417,6 +1417,15 @@ section.section-light{padding-bottom:clamp(190px,44vw,440px)}
       var active = wrap.querySelector('.htab.active');
       if (active) moveIndicator(active);
     });
+    // the pill text uses a webfont; if it swaps in after the initial measurement (no cache,
+    // slow connection), the button's real width changes but the indicator was already sized
+    // off the fallback font's metrics — resync once the webfont is actually ready
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function(){
+        var active = wrap.querySelector('.htab.active');
+        if (active) moveIndicator(active);
+      });
+    }
     requestAnimationFrame(function(){ moveIndicator(tabs[0]); var v0 = items[0].querySelector('video'); if (v0) v0.play().catch(function(){}); });
   })();
 
